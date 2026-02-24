@@ -1,6 +1,5 @@
 ﻿namespace TestDLL.Requests.Parameters;
 
-public sealed record GetMenuParameters
-{
-    public bool WithPrice { get; set; }
-}
+public sealed record GetMenuParameters(
+    bool WithPrice
+);
