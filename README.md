@@ -1,2 +1,2 @@
 # TestTask
-Test assignment for Smart Mill Service
+Test assignment for Smart Meal Service
