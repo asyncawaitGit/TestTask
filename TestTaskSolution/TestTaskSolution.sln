@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDLL", "TestDLL\TestDLL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{18F79CA9-BB6C-40A4-B543-6AD13B9F7535}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSmsWpfApp", "TestSmsWpfApp\TestSmsWpfApp.csproj", "{CC33A81C-1FA1-4037-87D6-91666488C0D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{18F79CA9-BB6C-40A4-B543-6AD13B9F7535}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18F79CA9-BB6C-40A4-B543-6AD13B9F7535}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18F79CA9-BB6C-40A4-B543-6AD13B9F7535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC33A81C-1FA1-4037-87D6-91666488C0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC33A81C-1FA1-4037-87D6-91666488C0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC33A81C-1FA1-4037-87D6-91666488C0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC33A81C-1FA1-4037-87D6-91666488C0D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
