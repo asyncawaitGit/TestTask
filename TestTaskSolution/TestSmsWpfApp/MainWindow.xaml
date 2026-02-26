@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestSmsWpfApp"
+        xmlns:local="clr-namespace:TestSmsWpfApp" xmlns:sys="clr-namespace:System;assembly=netstandard"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
@@ -11,20 +11,108 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="WhiteButton" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border Background="White"
             CornerRadius="20"
             Margin="0"
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
-        <Grid Margin="10">
-            <DataGrid x:Name="VariablesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" FocusVisualStyle="{x:Null}" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Поле" Binding="{Binding Name}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Значение" Binding="{Binding Value}"/>
-                    <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="Сохранить" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"
-                Margin="0,0,0,10" />
+        <Grid Margin="10" FocusManager.IsFocusScope="False">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Text="Тестовое WPF-приложение для SmartMealService" 
+                FontWeight="Bold" />
+            
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <Button Content="_" Style="{StaticResource WhiteButton}" Click="MinimizeButton_Click"/>
+                <Button Content="X" Style="{StaticResource WhiteButton}" Margin="10, 0" Click="CloseButton_Click" />
+            </StackPanel>
+
+            <Border
+                CornerRadius="20,20,20,20"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Background="White"
+                ClipToBounds="True"
+                Grid.Row="1"
+                Grid.ColumnSpan="2">
+
+                <DataGrid 
+                    x:Name="VariablesDataGrid"
+                    ItemsSource="{Binding Variables}"
+                    AutoGenerateColumns="False"
+                    RowEditEnding="VariablesDataGrid_RowEditEnding"
+                    SelectionUnit="FullRow"
+                    GridLinesVisibility="All"
+                    BorderThickness="0"
+                    Background="White">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Resources>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Padding" Value="10"/>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Поле" 
+                            Binding="{Binding Name}" 
+                            IsReadOnly="True"
+                            Width="*"/>
+                        <DataGridTextColumn Header="Значение" 
+                            Binding="{Binding Value}"
+                             Width="*"/>
+                        <DataGridTextColumn Header="Комментарий" Width="*">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Comment"
+                                    Mode="TwoWay"
+                                    UpdateSourceTrigger="PropertyChanged"/>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
         </Grid>
     </Border>
 </Window>
